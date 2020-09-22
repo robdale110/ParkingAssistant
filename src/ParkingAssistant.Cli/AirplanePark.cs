@@ -69,7 +69,7 @@ namespace ParkingAssistant.Cli
                 Jumbo jumbo => false,
                 Jet jet => false,
                 Prop prop => false,
-                _ => slot.IsAvailable
+                _ => throw new UnknownPlaneException("Plane type not recognised")
             };
         }
     }

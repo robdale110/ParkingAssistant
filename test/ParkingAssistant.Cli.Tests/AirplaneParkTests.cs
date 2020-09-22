@@ -137,5 +137,12 @@ namespace ParkingAssistant.Cli.Tests
             _airplanePark.BookSlot(slot, prop);
             _airplanePark.SmallSlots.Count(theSlot => !theSlot.IsAvailable).Should().Be(1);
         }
+
+        [Fact]
+        public void BookSlot_Should_Throw_UnknownAirplaneException_If_Type_Not_Recognised()
+        {
+            Action result = () => { _airplanePark.BookSlot(new Slot(), new InvalidPlane()); };
+            result.Should().Throw<UnknownPlaneException>();
+        }
     }
 }
