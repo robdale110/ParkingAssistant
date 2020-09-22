@@ -1,13 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using ParkingAssistant.Cli.Interfaces;
+using ParkingAssistant.Cli.Models;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ParkingAssistant.Cli.Tests
 {
-    public static class AirplaneParkTestHelper
+    public class AirplaneParkTestHelper
     {
-        public 
+        public static void CreateFullLargeSlots(IAirplanePark airplanePark) =>
+            airplanePark.LargeSlots = Enumerable.Range(0, 25)
+                .Select(largeSlot => new LargeSlot { IsAvailable = false })
+                .ToList();
+
+        public static void CreateFullMediumSlots(IAirplanePark airplanePark) =>
+            airplanePark.MediumSlots = Enumerable.Range(0, 25)
+                .Select(largeSlot => new MediumSlot { IsAvailable = false })
+                .ToList();
+
+        public static void CreateFullSmallSlots(IAirplanePark airplanePark) =>
+            airplanePark.SmallSlots = Enumerable.Range(0, 25)
+                .Select(largeSlot => new SmallSlot { IsAvailable = false })
+                .ToList();
     }
 }

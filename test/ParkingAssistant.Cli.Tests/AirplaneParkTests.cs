@@ -73,11 +73,27 @@ namespace ParkingAssistant.Cli.Tests
         }
 
         [Fact]
-        public void FindSlot_Should_Throw_NoRequiredSlotException_If_There_Are_No_Slots_Of_Required_Type()
+        public void FindSlot_Should_Throw_NoRequiredSlotException_If_There_Are_No_LargeSlots_Available()
         {
-            AirplaneParkTestHelper.CreateFullLargeSlots();
+            AirplaneParkTestHelper.CreateFullLargeSlots(_airplanePark);
             Action result = () => { _ = _airplanePark.FindSlot(new Jumbo()); };
-            result.Should().Throw<UnknownPlaneException>();
+            result.Should().Throw<NoRequiredSlotException>();
+        }
+
+        [Fact]
+        public void FindSlot_Should_Throw_NoRequiredSlotException_If_There_Are_No_MediumSlots_Available()
+        {
+            AirplaneParkTestHelper.CreateFullMediumSlots(_airplanePark);
+            Action result = () => { _ = _airplanePark.FindSlot(new Jet()); };
+            result.Should().Throw<NoRequiredSlotException>();
+        }
+
+        [Fact]
+        public void FindSlot_Should_Throw_NoRequiredSlotException_If_There_Are_No_SmallSlots_Available()
+        {
+            AirplaneParkTestHelper.CreateFullSmallSlots(_airplanePark);
+            Action result = () => { _ = _airplanePark.FindSlot(new Prop()); };
+            result.Should().Throw<NoRequiredSlotException>();
         }
     }
 }
