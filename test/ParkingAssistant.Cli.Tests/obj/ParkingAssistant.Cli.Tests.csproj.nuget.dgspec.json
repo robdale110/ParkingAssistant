@@ -4,14 +4,14 @@
     "E:\\Source\\ParkingAssistant\\test\\ParkingAssistant.Cli.Tests\\ParkingAssistant.Cli.Tests.csproj": {}
   },
   "projects": {
-    "E:\\Source\\ParkingAssistant\\test\\ParkingAssistant.Cli.Tests\\ParkingAssistant.Cli.Tests.csproj": {
+    "E:\\Source\\ParkingAssistant\\src\\ParkingAssistant.Cli\\ParkingAssistant.Cli.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Source\\ParkingAssistant\\test\\ParkingAssistant.Cli.Tests\\ParkingAssistant.Cli.Tests.csproj",
-        "projectName": "ParkingAssistant.Cli.Tests",
-        "projectPath": "E:\\Source\\ParkingAssistant\\test\\ParkingAssistant.Cli.Tests\\ParkingAssistant.Cli.Tests.csproj",
+        "projectUniqueName": "E:\\Source\\ParkingAssistant\\src\\ParkingAssistant.Cli\\ParkingAssistant.Cli.csproj",
+        "projectName": "ParkingAssistant.Cli",
+        "projectPath": "E:\\Source\\ParkingAssistant\\src\\ParkingAssistant.Cli\\ParkingAssistant.Cli.csproj",
         "packagesPath": "C:\\Users\\rob\\.nuget\\packages\\",
-        "outputPath": "E:\\Source\\ParkingAssistant\\test\\ParkingAssistant.Cli.Tests\\obj\\",
+        "outputPath": "E:\\Source\\ParkingAssistant\\src\\ParkingAssistant.Cli\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\"
@@ -41,7 +41,71 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "E:\\Source\\ParkingAssistant\\test\\ParkingAssistant.Cli.Tests\\ParkingAssistant.Cli.Tests.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\Source\\ParkingAssistant\\test\\ParkingAssistant.Cli.Tests\\ParkingAssistant.Cli.Tests.csproj",
+        "projectName": "ParkingAssistant.Cli.Tests",
+        "projectPath": "E:\\Source\\ParkingAssistant\\test\\ParkingAssistant.Cli.Tests\\ParkingAssistant.Cli.Tests.csproj",
+        "packagesPath": "C:\\Users\\rob\\.nuget\\packages\\",
+        "outputPath": "E:\\Source\\ParkingAssistant\\test\\ParkingAssistant.Cli.Tests\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\rob\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {
+              "E:\\Source\\ParkingAssistant\\src\\ParkingAssistant.Cli\\ParkingAssistant.Cli.csproj": {
+                "projectPath": "E:\\Source\\ParkingAssistant\\src\\ParkingAssistant.Cli\\ParkingAssistant.Cli.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
           "dependencies": {
+            "FluentAssertions": {
+              "target": "Package",
+              "version": "[5.10.3, )"
+            },
             "Microsoft.NET.Test.Sdk": {
               "target": "Package",
               "version": "[16.5.0, )"
