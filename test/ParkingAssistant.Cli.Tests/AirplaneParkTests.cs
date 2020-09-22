@@ -3,6 +3,7 @@ using ParkingAssistant.Cli.Exceptions;
 using ParkingAssistant.Cli.Interfaces;
 using ParkingAssistant.Cli.Models;
 using System;
+using System.Linq;
 using Xunit;
 
 namespace ParkingAssistant.Cli.Tests
@@ -94,6 +95,47 @@ namespace ParkingAssistant.Cli.Tests
             AirplaneParkTestHelper.CreateFullSmallSlots(_airplanePark);
             Action result = () => { _ = _airplanePark.FindSlot(new Prop()); };
             result.Should().Throw<NoRequiredSlotException>();
+        }
+
+        [Fact]
+        public void BookSlot_Should_Throw_ArgumentNullException_If_Slot_Not_Provided()
+        {
+            Action result = () => { _airplanePark.BookSlot(null, new Airplane()); };
+            result.Should().Throw<ArgumentNullException>();
+        }
+
+        [Fact]
+        public void BookSlot_Should_Throw_ArgumentNullException_If_Airplane_Not_Provided()
+        {
+            Action result = () => { _airplanePark.BookSlot(new Slot(), null); };
+            result.Should().Throw<ArgumentNullException>();
+        }
+
+        [Fact]
+        public void BookSlot_Can_Put_Correct_Airplane_In_Large_Slot()
+        {
+            var jumbo = new Jumbo { Name = "A380" };
+            var slot = _airplanePark.FindSlot(jumbo);
+            _airplanePark.BookSlot(slot, jumbo);
+            _airplanePark.LargeSlots.Count(theSlot => !theSlot.IsAvailable).Should().Be(1);
+        }
+
+        [Fact]
+        public void BookSlot_Can_Put_Correct_Airplane_In_Medium_Slot()
+        {
+            var jet = new Jet { Name = "A330" };
+            var slot = _airplanePark.FindSlot(jet);
+            _airplanePark.BookSlot(slot, jet);
+            _airplanePark.MediumSlots.Count(theSlot => !theSlot.IsAvailable).Should().Be(1);
+        }
+
+        [Fact]
+        public void BookSlot_Can_Put_Correct_Airplane_In_Small_Slot()
+        {
+            var prop = new Prop { Name = "E195" };
+            var slot = _airplanePark.FindSlot(prop);
+            _airplanePark.BookSlot(slot, prop);
+            _airplanePark.SmallSlots.Count(theSlot => !theSlot.IsAvailable).Should().Be(1);
         }
     }
 }

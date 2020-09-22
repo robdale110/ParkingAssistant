@@ -1,9 +1,9 @@
-﻿using System;
+﻿using ParkingAssistant.Cli.Exceptions;
 using ParkingAssistant.Cli.Interfaces;
 using ParkingAssistant.Cli.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using ParkingAssistant.Cli.Exceptions;
 
 namespace ParkingAssistant.Cli
 {
@@ -15,10 +15,6 @@ namespace ParkingAssistant.Cli
 
         public AirplanePark()
         {
-            LargeSlots = new List<LargeSlot>();
-            MediumSlots = new List<MediumSlot>();
-            SmallSlots = new List<SmallSlot>();
-
             LargeSlots = Enumerable.Range(0, 25)
                 .Select(largeSlot => new LargeSlot { IsAvailable = true })
                 .ToList();
@@ -37,6 +33,7 @@ namespace ParkingAssistant.Cli
                 throw new ArgumentNullException(nameof(plane));
             }
 
+            // TODO: Change to accommodate smaller planes in larger slots
             Slot availableSlot = plane switch
             {
                 Jumbo jumbo => LargeSlots.ToList().Find(slot => slot.IsAvailable),
@@ -52,12 +49,28 @@ namespace ParkingAssistant.Cli
 
             return availableSlot;
         }
-            
+
 
         public void BookSlot(Slot slot, Airplane plane)
         {
-            // Similar to above, but make one as unavailable
-            // Maybe add name to plane and actually add the class to the collection
+            if (slot == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            if (plane == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            // TODO: Change to accommodate smaller planes in larger slots
+            slot.IsAvailable = plane switch
+            {
+                Jumbo jumbo => false,
+                Jet jet => false,
+                Prop prop => false,
+                _ => slot.IsAvailable
+            };
         }
     }
 }
